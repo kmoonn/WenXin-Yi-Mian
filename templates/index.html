@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+    <title>耦缘 · 文心一面</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets/img/favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.ico') }}">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,600,800" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Main CSS -->
+    <link href="{{ url_for('static',filename='assets/css/main.css') }}" rel="stylesheet"/>
+    <!-- Animation CSS -->
+    <link href="{{ url_for('static',filename='assets/css/vendor/aos.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static',filename='assets/css/carousel.css') }}" rel="stylesheet"/>
+</head>
+<body>
+<!----------------------------------------------------------------------
+topnav: 表示导航是否跟随移动
+fixed-top : 不固定导航栏
+------------------------------------------------------------------------>
+
+<nav class="topnav navbar navbar-expand-lg navbar-dark bg-primary z-index-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>耦缘</strong></a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor02" style="">
+            <ul class="navbar-nav ml-auto d-flex align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('Prompt') }}">Prompt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('Main_Page') }}">文心一面</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('Brief_Info') }}">作品简介</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('Pro_Doc') }}">作品文档</a>
+                </li>
+                {% if session['useremail'] %}
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../static/assets/img/logo.png" alt="" width="32" height="32"
+                                 class="rounded-circle me-2">
+                            <strong>{{ session['username'] }}</strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="{{ url_for('Personal_Center') }}">个人中心</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ url_for('Logout') }}">注销</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if not session['useremail'] %}
+                    <li class="nav-item">
+                    <span class="nav-link" href="#">
+                        <a class="btn btn-info btn-round shadow-sm" href="{{ url_for('ToLogin') }}"><i
+                                class="fa fa-user-circle"></i> 登录
+                        </a>
+                    </span>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- End Navbar -->
+<!-------------------------------------HEADER--------------------------------------->
+<header>
+    <div class="jumbotron jumbotron-lg jumbotron-fluid mb-0 pb-3 bg-primary position-relative">
+        <div class="container-fluid text-white h-60vh">
+            <div class="d-lg-flex align-items-start justify-content-center text-center pl-lg-5 ">
+                <div class="col pb-5 mt--8">
+                    <h1 class="display-3 "><i class="fas fa-walking mr-2"></i><strong>文心大模型多模态创意软件</strong></h1>
+                    <h2 class="font-weight-light mb-4">Prompt · 设计策略 · 角色设计 · 文心一面</h2>
+                    <h2 class="font-weight-light mb-4">第十二届“中国软件杯”大学生软件设计大赛</h2>
+                    <h3 class="font-weight-light mb-4">出题企业:百度在线网络技术（北京）有限公司</h3>
+                </div>
+                <div id="contentContainer" class="trans3d">
+                    <section id="carouselContainer" class="trans3d">
+                        <figure id="item1" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_1.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item2" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_2.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item3" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_3.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item4" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_4.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item5" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_5.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item6" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_6.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item7" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_7.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item8" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_8.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item9" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_9.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item10" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_10.png') }}">
+                            </div>
+                        </figure>
+                        <figure id="item101" class="carouselItem trans3d">
+                            <div class="carouselItemInner trans3d">
+                                <img src="{{ url_for('static',filename='assets/img/img_11.png') }}">
+                            </div>
+                        </figure>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <svg style="-webkit-transform:rotate(-180deg); -moz-transform:rotate(-180deg); -o-transform:rotate(-180deg); transform:rotate(-180deg); margin-top: -1px;"
+         version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         x="0px" y="0px" viewbox="0 0 1440 126" xml:space="preserve">
+        <path class="bg-primary" d="M685.6,38.8C418.7-11.1,170.2,9.9,0,30v96h1440V30C1252.7,52.2,1010,99.4,685.6,38.8z"></path>
+    </svg>
+    <div id="mouseClick" class="scroll-down position-relative text-center" style="margin-top: -20px">
+        <h1><i class="fa fa-angle-down scroll-down-effects"></i></h1>
+    </div>
+</header>
+<!--- END HEADER -->
+<hr class="border-0 mt-5 mb-5">
+
+<main id="main" class="container"></main>
+
+<div class="container marketing">
+    <!-- START THE FEATURETTES -->
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7 text-center">
+            <h2 class="featurette-heading fw-normal lh-1">赛题简介
+            </h2>
+            <p class="lead"> 当前，大模型作为人工智能领域的热点研究技术之一，在模型规模和性能方面不断创出新高，正在以前所未有的速度成为AI新时代的新基座。
+                大模型能够关联来自多种模态的信息、涌现出先进的信息表达能力，对人工智能技术研发和产业应用起到新一轮推动性作用，也为高校同学们带来了全新的开发范式、场景空间和创新创业机会。
+                本赛题要求选手基于文心大模型ERNIE相关技术，利用包括但不限于大模型API、套件ERNIEKit、BML/Easydl开发平台和场景化平台等百度领先的大模型能力，进行针对大模型时代下的创意软件开发。
+            </p>
+            <p id="small-btn"><a class="btn bg-primary" href="https://www.cnsoftbei.com/plus/view.php?aid=836">更多
+                &raquo;</a></p>
+        </div>
+        <div class="col-md-5">
+            <img src="{{ url_for('static',filename='assets/img/img_1.png') }}">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2 text-center">
+            <h2 class="featurette-heading fw-normal lh-1">Prompt Generator
+            </h2>
+            <p class="lead">prompt generator介绍
+                GENIUS是一种基于草稿进行文本生成的预训练模型 。它可以根据给定的少量的关键词、短语、片段，进行文本补全，从而构成一个完整、连贯的段落。
+                这与我们prompt生成的目标不谋而合！可以预训练基础上选用中文语料进行训练：
+            </p>
+            <p id="small-btn"><a class="btn bg-primary" href="{{ url_for('Prompt') }}">更多 &raquo;</a></p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img src="{{ url_for('static',filename='assets/img/img_11.png') }}">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 text-center">
+            <h2 class="featurette-heading fw-normal lh-1">文心一面</h2>
+            <p class="lead">文心一面
+                “文心一面”是一款创新的AI模拟面试平台，旨在帮助求职者、学生和职场新人提升面试技巧，自信迎接挑战。
+                平台利用先进的文心大模型和表情识别技术，为用户提供逼真的面试模拟和全面的反馈分析，助力他们在竞争激烈的求职市场中脱颖而出。
+            </p>
+            <p id="small-btn"><a class="btn bg-primary" href="{{ url_for('Main_Page') }}">更多 &raquo;</a></p>
+        </div>
+        <div class="col-md-5">
+            <img src="{{ url_for('static',filename='assets/img/img_10.png') }}">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-3 text-center">
+            <img width="140" height="140" style="border-radius: 50%"
+                 src="{{ url_for('static',filename='assets/img/zhou.jpg') }}">
+            <h2 class="fw-normal">周晓锋</h2>
+            <p>武汉理工大学软件工程专业.</p>
+            <!--            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-3 text-center">
+            <img width="140" height="140" style="border-radius: 50%"
+                 src="{{ url_for('static',filename='assets/img/li.png') }}">
+            <h2 class="fw-normal">李佳明</h2>
+            <p>武汉理工大学电子商务专业.</p>
+            <!--            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-3 text-center">
+            <img width="140" height="140" style="border-radius: 50%"
+                 src="{{ url_for('static',filename='assets/img/hu.png') }}">
+            <h2 class="fw-normal">胡姗</h2>
+            <p>武汉理工大学信息工程专业.</p>
+            <!--            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-3 text-center">
+            <img width="140" height="140" style="border-radius: 50%"
+                 src="{{ url_for('static',filename='assets/img/zhang.png') }}">
+            <h2 class="fw-normal">张洁</h2>
+            <p>武汉理工大学电子商务专业.</p>
+            <!--            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+</div><!-- /.container -->
+
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     x="0px" y="0px" viewbox="0 0 1440 126" style="enable-background:new 0 0 1440 126;" xml:space="preserve">
+        <path class="bg-primary" d="M685.6,38.8C418.7-11.1,170.2,9.9,0,30v96h1440V30C1252.7,52.2,1010,99.4,685.6,38.8z"></path>
+</svg>
+<footer class="bg-primary pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md mr-4">
+                <i class="fas fa-copyright text-white">
+                    <script>document.write(new Date().getFullYear().toString())</script>
+                    耦缘 版权所有</i>
+            </div>
+            <div class="col-6 col-md">
+                <h5 class="mb-4 text-white">第十二届中国软件杯大学生软件设计大赛</h5>
+                <ul class="list-unstyled text-small">
+                    <li class="text-muted">A11文心大模型多模态创意软件</li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5 class="mb-4 text-white">关于</h5>
+                <ul class="list-unstyled text-small">
+                    <li class="text-muted">本作品不断完善中</li>
+                    <li class="text-muted"><a class="text-muted" style="text-decoration:none" href="mailto:lee_learn@foxmal.com"></a>联系我们: lee_learn@foxmal.com
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--------------------------------------
+JAVASCRIPTS
+--------------------------------------->
+<script src="{{ url_for('static', filename='assets/js/vendor/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/TweenMax.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/vendor/popper.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/vendor/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/vendor/share.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/carousel.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/topcarousel.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='assets/js/vendor/aos.js') }}" type="text/javascript"></script>
+
+<noscript>
+    <style>
+        *[data-aos] {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
+</noscript>
+<script>
+    AOS.init({
+        duration: 700
+    });
+</script>
+
+<script>
+    AOS.init({
+        disable: function () {
+            var maxWidth = 1200;
+            return window.innerWidth < maxWidth;
+        }
+    });
+</script>
+<script>
+    $('.carousel').on('slide.bs.carousel', function (event) {
+        var height = $(event.relatedTarget).height();
+        var $innerCarousel = $(event.target).find('.carousel-inner');
+        $innerCarousel.animate({
+            height: height
+        });
+    });
+</script>
+
+<!-- Popovers -->
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+    $('.popover-dismiss').popover({
+        trigger: 'focus'
+    })
+</script>
+
+<!-- Tooltips -->
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+<script>
+    const toMainElement = document.getElementById("mouseClick");
+    const mainElement = document.querySelector("main");
+
+    function scrollToMain() {
+        mainElement.scrollIntoView({behavior: "smooth"});
+
+    }
+
+    toMainElement.addEventListener("click", function (event) {
+        event.preventDefault();
+        scrollToMain();
+    })
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>"中国软件杯"·耦缘·A11作品展示</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/"/>
+    <link href="{{ url_for('static', filename='pages/login/assets/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='pages/login/assets/css/sign-in.css') }}" rel="stylesheet"/>
+</head>
+<body class="text-center">
+
+<main class="form-signin w-100 m-auto">
+    <form action="{{ url_for('Register') }}" method="post">
+        <img class="mb-4" src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="" width="100" height="100">
+        <h1 class="h3 mb-3 fw-normal">耦缘</h1>
+        {% if session['message'] %}
+        	<p style="color: red">{{ session['message'] }}</p>
+        {% endif %}
+        <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" name="useremail" placeholder="name@example.com">
+            <label for="floatingInput">邮箱</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="密码">
+            <label for="floatingPassword">密码</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" style="margin-bottom: 10px;" id="reFloatingPassword" name="rePassword" placeholder="确认密码">
+            <label for="floatingPassword">确认密码</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">注册</button>
+        <div class="mb-3">
+            <label>
+                回到主页？<a href="/home">主页</a>
+            </label>
+            &ensp;
+            <label>
+                已有账号？<a href="{{ url_for('ToLogin') }}">登录</a>
+            </label>
+        </div>
+        <p class="mt-5 mb-3 text-muted">&copy; 2023–2023</p>
+    </form>
+</main>
+
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+/* center carousel */
+.carousel {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    /* background: #cc1717; */
+    /* background: url(./static/assets/img/bg.png); */
+    background: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.carousel-item {
+    --items: 5;
+    --width: clamp(500px, 800px, 1920px);
+    --height: clamp(300px, 500px, 800px);
+    --x: calc(var(--active) * 400%);
+    --y: calc(var(--active) * 100%);
+    --rot: calc(var(--active) * 120deg);
+    --opacity: calc(var(--zIndex) / var(--items) * 3 - 2);
+    overflow: hidden;
+    position: absolute;
+    z-index: var(--zIndex);
+    width: var(--width);
+    height: var(--height);
+    margin: calc(var(--height) * -0.5) 0 0 calc(var(--width) * -0.5);
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    user-select: none;
+    transform-origin: 0% 100%;
+    /* box-shadow: 0 10px 50px 10px rgba(0, 0, 0, 0.5); */
+    background: black;
+    pointer-events: auto;
+    transform: translate(var(--x), var(--y)) rotate(var(--rot));
+    transition: transform 0.8s cubic-bezier(0, 0.02, 0, 1);
+}
+
+.carousel-item .carousel-box {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+    opacity: var(--opacity);
+    font-family: 'Orelo-sw-db', serif;
+}
+
+.carousel-item .carousel-box:before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent 30%, transparent 50%, rgba(0, 0, 0, 0.5)); */
+}
+
+.carousel-item .title {
+    position: absolute;
+    z-index: 1;
+    color: #3369d6;
+
+    top: 1%;
+    left: 37%;
+    transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+    font-size: clamp(30px, 4vw, 50px);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-item .num {
+
+    position: absolute;
+    z-index: 1;
+    color: #fff;
+    top: 45%;
+    left: 45%;
+    transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+    font-size: clamp(20px, 10vw, 80px);
+}
+
+.carousel-item .num a {
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(5px);
+    filter: blur(1px);
+}
+
+
+@media (pointer: fine) {
+    .cursor {
+        display: block;
+    }
+}
+
+/* top carousel */
+/* hardware accelatator class */
+.trans3d {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform-style: preserve-3d;
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform-style: preserve-3d;
+    -ms-transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    transform: translate3d(0, 0, 0);
+
+    -webkit-backface-visibility: hidden;
+          -moz-backface-visibility: hidden;
+          -ms-backface-visibility:hidden;
+          backface-visibility:hidden;
+}
+
+#contentContainer {
+    position: absolute;
+    margin-left: -500px;
+    margin-top: -500px;
+    left: 50%;
+    top: 100%;
+    width: 1000px;
+    height: 800px;
+}
+
+#carouselContainer {
+    position: absolute;
+    margin-left: -500px;
+    margin-top: -500px;
+    left: 50%;
+    top: 50%;
+    width: 1000px;
+    height: 1000px;
+}
+
+.carouselItem {
+    width: 320px;
+    height: 130px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -160px;
+    margin-top: -90px;
+    visibility: hidden;
+}
+
+.carouselItemInner {
+    width: 320px;
+    height: 130px;
+    position: absolute;
+    /* background-color: rgba(255, 255, 255, .75); */
+    /* border: 10px solid rgba(255, 255, 255, .5); */
+    color: aqua;
+    font-size: 72px;
+    left: 50%;
+    top: 50%;
+    margin-left: -160px;
+    margin-top: -90px;
+    text-align: center;
+    padding-top: 50px;
+
+}
+
+.carouselItemInner .trans3d img {
+    margin-bottom: 20%;
+}
