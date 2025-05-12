@@ -6,8 +6,6 @@ instance/*
 .idea
 
 ### api db
-api
-db
 
 ### Python template
 # Byte-compiled / optimized / DLL files
